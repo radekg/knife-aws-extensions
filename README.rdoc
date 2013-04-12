@@ -1,0 +1,81 @@
+= Knife AWS Extensions
+
+= Description:
+
+This is the Chef Knife plugin adding new commands for AWS.
+
+= Installation:
+
+Be sure you are running the latest version Chef. Versions earlier than 0.10.0 don't support plugins:
+
+    gem install chef
+
+This plugin is distributed as a Ruby Gem. To install it, run:
+
+    gem install knife-aws-extensions
+
+Depending on your system's configuration, you may need to run this command with root privileges.
+
+= Configuration:
+
+In order to communicate with the Amazon's EC2 API you will have to tell Knife about your AWS Access Key and Secret Access Key.  The easiest way to accomplish this is to create some entries in your <tt>knife.rb</tt> file:
+
+    knife[:aws_access_key_id]  = "Your AWS Access Key ID"
+    knife[:aws_secret_access_key] = "Your AWS Secret Access Key"
+
+If your knife.rb file will be checked into a SCM system (ie readable by others) you may want to read the values from environment variables:
+
+    knife[:aws_access_key_id] = "#{ENV['AWS_ACCESS_KEY_ID']}"
+    knife[:aws_secret_access_key] = "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+
+= Subcommands:
+
+This plugin provides the following Knife subcommands.  Specific command options can be found by invoking the subcommand with a <tt>--help</tt> flag
+
+== knife ec2 security group create
+
+== knife ec2 security group delete
+
+== knife ec2 security group list
+
+== knife ec2 security group rule add
+
+== knife ec2 security group rule delete
+
+== knife ec2 server stop
+
+== knife ec2 server start
+
+== knife route53 zone list
+
+Outputs a list of all Route53 zones in the currently configured AWS account.
+
+== knife route53 zone create
+
+Creates a new hosted zone on Route53.
+
+== knife route53 zone delete
+
+Deletes an existing Route53 hosted zone.
+
+== knife route53 zone describe
+
+Enlists all known information of the Route53 hosted zone.
+
+= License:
+
+Author:: Rad Gruchalski (<radek@gruchalski.com>)
+License:: Apache License, Version 2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
