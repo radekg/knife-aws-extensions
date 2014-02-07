@@ -34,6 +34,13 @@ class Chef
         :short => "-t TAG1=VALUE,TAG2=PATTERN*",
         :long => "--tags TAG1=VALUE,TAG2=PATTERN*",
         :description => "List of tags to filter by"
+        
+      option :search_query,
+        :short => "-s chef_environment:_default",
+        :long => "--search chef_environment:_default",
+        :description => "chef search query to shutdown nodes"
+        
+        
 
       def run
         
@@ -47,6 +54,11 @@ class Chef
             key_val = tag.split("=")
             tags[key_val[0].downcase] = key_val[1]
           end
+        if config[:search_query]
+          server_ids = []
+          search(:node, search_query).each do | node |
+            server_ids << node.to_hash['ec2']['instance_id']
+        end
           
           connection.servers.all.each do |server|
             server.tags.each do |name,value|
