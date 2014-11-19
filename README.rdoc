@@ -10,9 +10,10 @@ Be sure you are running the latest version Chef. Versions earlier than 0.10.0 do
 
     gem install chef
 
-This plugin is distributed as a Ruby Gem. To install it, run:
+To install:
 
-    gem install knife-aws-extensions
+    gem install specific_install
+    gem specific_install https://github.com/radekg/knife-aws-extensions.git
 
 Depending on your system's configuration, you may need to run this command with root privileges.
 
